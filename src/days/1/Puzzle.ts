@@ -1,17 +1,46 @@
 import Puzzle from '../../types/AbstractPuzzle';
 
 export default class ConcretePuzzle extends Puzzle {
-  public solveFirst(): string {
-    return 'day 1 solution 1';
-  }
-  public solveSecond(): string {
-    return 'day 1 solution 2';
-  }
+    private parse = (input: string) => input.split('\n').map((s: string) => parseInt(s));
 
-  public getFirstExpectedResult(): string {
-    return 'day 1 solution 1';
-  }
-  public getSecondExpectedResult(): string {
-    return 'day 1 solution 2';
-  }
+    public solveFirst(): string {
+        const numbers = this.parse(this.input);
+        let res = 0;
+        numbers.map((first: number) => {
+                numbers.map((second: number) => {
+                        if (first + second == 2020) {
+                            res = first * second;
+                        }
+                    }
+                );
+            }
+        );
+        return `${res}`;
+    }
+
+    public solveSecond(): string {
+        const numbers = this.parse(this.input);
+        let res = 0;
+        numbers.map((first: number) => {
+                numbers.map((second: number) => {
+                        numbers.map((third: number) => {
+                                if (first + second + third == 2020) {
+                                    res = first * second * third;
+                                }
+                            }
+                        );
+                    }
+                );
+            }
+        );
+        return `${res}`;
+    }
+
+    public getFirstExpectedResult(): string {
+        return '703131';
+    }
+
+    public getSecondExpectedResult(): string {
+        return '272423970';
+    }
 }
