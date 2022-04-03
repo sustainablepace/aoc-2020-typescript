@@ -6,33 +6,28 @@ export default class ConcretePuzzle extends Puzzle {
     public solveFirst(): string {
         const numbers = this.parse(this.input);
         let res = 0;
-        numbers.map((first: number) => {
-                numbers.map((second: number) => {
-                        if (first + second == 2020) {
-                            res = first * second;
-                        }
-                    }
-                );
+        for (let i = 0; i < numbers.length; i++) {
+            for (let j = i + 1; j < numbers.length; j++) {
+                if (numbers[i] + numbers[j] == 2020) {
+                    res = numbers[i] * numbers[j];
+                }
             }
-        );
+        }
         return `${res}`;
     }
 
     public solveSecond(): string {
         const numbers = this.parse(this.input);
         let res = 0;
-        numbers.map((first: number) => {
-                numbers.map((second: number) => {
-                        numbers.map((third: number) => {
-                                if (first + second + third == 2020) {
-                                    res = first * second * third;
-                                }
-                            }
-                        );
+        for (let i = 0; i < numbers.length; i++) {
+            for (let j = i + 1; j < numbers.length; j++) {
+                for (let k = j + 1; k < numbers.length; k++) {
+                    if (numbers[i] + numbers[j] + numbers[k] == 2020) {
+                        res = numbers[i] * numbers[j] * numbers[k];
                     }
-                );
+                }
             }
-        );
+        }
         return `${res}`;
     }
 
